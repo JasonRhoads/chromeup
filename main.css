@@ -1,0 +1,41 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 10vh;
+}
+
+header {
+    background-color: red;
+    height: 10vh;
+    position: fixed;
+    width: 100vw;
+}
+
+nav ul {
+    align-items: center;
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    background: blue;
+    list-style-type: none;
+    text-align: center;
+    width: 10%;
+}
+
+nav ul li a {
+    text-decoration: none;
+}
+
+main {
+    padding-top: 10vh;
+}
+
+#test, #test2 {
+    height: 100vh;
+}
