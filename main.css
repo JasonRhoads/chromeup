@@ -1,4 +1,4 @@
-html, body {
+*, html, body {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
@@ -21,11 +21,8 @@ nav ul {
     padding: 0;
 }
 
-nav li {
-    background: blue;
+li {
     list-style-type: none;
-    text-align: center;
-    width: 10%;
 }
 
 nav ul li a {
@@ -36,6 +33,39 @@ main {
     padding-top: 10vh;
 }
 
-#test, #test2 {
-    height: 100vh;
+.cyberware-card-container {
+    text-align: center;
+}
+
+.card-container {
+    background-color: pink;
+    border-radius: 25px;
+    height: 75vh;
+    margin: 10px;
+    text-align: center;
+}
+
+.cyberware-options-container {
+    background: red;
+}
+
+.option-header {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: space-around;
+    
+}
+
+.cyberware-option {
+    background: white;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    position: absolute; 
+}
+
+input[type="checkbox"]:checked ~ label{
+    background: blue;
 }
