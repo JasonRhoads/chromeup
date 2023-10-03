@@ -38,27 +38,78 @@ main {
 }
 
 .card-container {
-    background-color: pink;
+    /* background-color: pink; */
+    border: 1px solid black;
     border-radius: 25px;
-    height: 75vh;
+    box-sizing: border-box;
+    max-height: 75vh;
     margin: 10px;
-    text-align: center;
+    padding-bottom: 20px;
 }
 
+.container-header {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.red-arrow {
+    color: red;
+}
 .cyberware-options-container {
     background: red;
+    border-bottom: 5px solid red;
 }
 
 .option-header {
     align-items: center;
+    color: white;
     display: flex;
     height: 50px;
-    justify-content: space-around;
-    
+    justify-content: space-between;
+    padding-inline: 20px;
+}
+
+
+
+.options-container {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-left: 15px;
+    scrollbar-color: #007 #bada55;
+    scrollbar-gutter: stable;
 }
 
 .cyberware-option {
+    align-items: center;
     background: white;
+    display: flex;
+    font-size: .75rem;
+    justify-content: center;
+}
+
+.option {
+    align-self: center;
+    border-inline: 3px solid red;
+    /* display: block; */
+    height: 50px;
+}
+
+.option-name {
+    width: 20%; 
+}
+
+.option-description {
+    max-height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    padding-inline: 1px;
+    width: 125px;    
+}
+
+.option-install, .option-cost, .option-HL {
+    width: 10%; 
 }
 
 input[type="checkbox"] {
