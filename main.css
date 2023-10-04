@@ -1,6 +1,11 @@
-*, html, body {
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
+    
+}
+
+html, body {
+    overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 10vh;
 }
@@ -38,18 +43,25 @@ main {
 }
 
 .card-container {
-    /* background-color: pink; */
+    background-color: red;
     border: 1px solid black;
     border-radius: 25px;
     box-sizing: border-box;
-    max-height: 75vh;
+    max-height: 80vh;
     margin: 10px;
     padding-bottom: 20px;
 }
 
 .container-header {
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     padding-left: 20px;
     text-align: left;
+}
+
+.container-header p {
+    padding-left: 20px;
 }
 
 .red-arrow {
@@ -69,13 +81,31 @@ main {
     padding-inline: 20px;
 }
 
-
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: red;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #a10000;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff4242;
+  }
 
 .options-container {
     max-height: 350px;
     overflow-y: auto;
     padding-left: 15px;
-    scrollbar-color: #007 #bada55;
     scrollbar-gutter: stable;
 }
 
@@ -83,38 +113,53 @@ main {
     align-items: center;
     background: white;
     display: flex;
-    font-size: .75rem;
+    font-size: 10px;
+    height: 50px;
     justify-content: center;
 }
 
-.option {
-    align-self: center;
-    border-inline: 3px solid red;
-    /* display: block; */
+.cyberware-option:nth-of-type(even) {
+    background: pink;
+}
+
+.red-vertical-line {
+    background-color: red;
     height: 50px;
+    width: 3px;
 }
 
 .option-name {
+    padding: 10px 0;
     width: 20%; 
 }
 
+.option-install {
+    padding: 15px 0;
+    width: 15%;
+}
+
 .option-description {
-    max-height: 50px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
     overflow: hidden;
-    padding-inline: 1px;
-    width: 125px;    
+    padding: 5px 1px;
+    width: 135px;  
 }
 
-.option-install, .option-cost, .option-HL {
-    width: 10%; 
+.option-cost, .option-HL {
+    padding: 15px 0;
+    width: 12%; 
 }
 
 input[type="checkbox"] {
     opacity: 0;
     position: absolute; 
+    top: 0;
+}
+
+.cyberware-option:has(input[type="checkbox"]:checked) {
+    background-color: green;
 }
 
 input[type="checkbox"]:checked ~ label{
