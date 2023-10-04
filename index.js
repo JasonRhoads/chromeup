@@ -1,4 +1,12 @@
 
+$(document).ready(function(){
+    $('.cyberware-card-container').slick(
+        // infinite: true,
+        // slidesToShow: 1,
+        // slidesToScroll: 1
+    );
+});
+
 //Populate cyberware options into containers
 
 for (const type in cyberware) {
