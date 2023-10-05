@@ -1,3 +1,7 @@
+setHead("Home");
+setHeader();
+
+
 //slick function to allow the cards to scorll horizontally
 $(document).ready(function(){
     $('.cyberware-card-container').slick({
@@ -8,6 +12,7 @@ $(document).ready(function(){
         slidesToScroll: 1
     });
 });
+
 
 //Populate cyberware options into containers
 
