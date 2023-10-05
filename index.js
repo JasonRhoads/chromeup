@@ -1,4 +1,4 @@
-
+//slick function to allow the cards to scorll horizontally
 $(document).ready(function(){
     $('.cyberware-card-container').slick({
         // arrows: true,
@@ -46,5 +46,3 @@ for (const type in cyberware) {
         }
     }
 }
-
-

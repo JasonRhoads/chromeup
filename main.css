@@ -78,8 +78,20 @@ main {
     color: white;
     display: flex;
     height: 50px;
-    justify-content: space-between;
-    padding-inline: 20px;
+    justify-content: center;
+    padding-inline: 20px 10px;
+}
+
+.option-header label:nth-of-type(2){
+    padding-inline: 20px 5px;
+}
+
+.option-header label:nth-of-type(3) {
+    padding-inline: 5px;
+}
+
+.option-header label:nth-of-type(4), .option-header label:nth-of-type(5) {
+    padding-inline:  5px;
 }
 
 /* width */
@@ -115,6 +127,7 @@ main {
     background: white;
     display: flex;
     font-size: 10px;
+    max-height: 80px;
     min-height: 50px;
     justify-content: center;
 }
@@ -124,15 +137,16 @@ main {
 }
 
 .red-vertical-line {
+    aspect-ratio: 1/27;
     background-color: red;
     content: "";
-    height: 50px;
     max-height: 80px;
     width: 3px;
 }
 
+
 .option-name {
-    padding: 10px 0;
+    padding: 15px 0;
     width: 20%; 
 }
 
