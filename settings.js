@@ -1,17 +1,17 @@
 setHead("Settings");
 setHeader();
 
-const user = {
-    "firstName" : "",
-    "lastName" : "",
-    "email" : "",
-    "characters": []
+function User(firstName, lastName, email, characters) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    characters= [];
 };
 
-const character = {
-    "handle" : "",
-    "role" : "",
-    "cyberware": {
+function Character(handle, role, cyberware) {
+    this.handle = handle;
+    this.role = role;
+    cyberware = {
         "fashionware": {
 
         },
@@ -54,5 +54,5 @@ const character = {
         "borgware" : {
 
         }
-    }
+    };
 }

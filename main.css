@@ -140,18 +140,16 @@ main {
     aspect-ratio: 1/27;
     background-color: red;
     content: "";
-    max-height: 80px;
+    min-height: 50px;
     width: 3px;
 }
 
 
 .option-name {
-    padding: 15px 0;
     width: 20%; 
 }
 
 .option-install {
-    padding: 15px 0;
     width: 15%;
 }
 
@@ -160,7 +158,6 @@ main {
 }
 
 .option-cost, .option-HL {
-    padding: 15px 0;
     width: 12%; 
 }
 
