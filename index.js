@@ -66,7 +66,14 @@ function setHeader() {
 
 function setUserCharacter() {
     for (const character of currentUser.characters) {
-        $("#user-caracters").append(character.handle);
+        $("#user-caracters").append(`
+        <label class="character" for="${character.handle}">
+            <input type="radio" name="character" id="${character.handle}">
+            <img src="./images/${character.role}.png" alt="${character.role}">
+            <p>${character.handle}</p>
+            <p>${character.role}</p>
+        </label>
+        `);
     }
 }
 
