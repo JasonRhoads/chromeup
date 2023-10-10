@@ -1,16 +1,34 @@
 // test user
 const testUser = new User("Jason", "Rhoads", "jason_email");
 
-testUser.characters.push(new Character("El'Mo", "Tech"));
-testUser.characters.push(new Character("Kobra Kai", "Solo"));
-testUser.characters.push(new Character("Buggsy", "NetRunner"));
-testUser.characters.push(new Character("Hound Dog", "RockerBoy"));
+testUser.characters["El'Mo"] = new Character("El'Mo", "Tech");
+testUser.characters["Kobra Kai"] = new Character("Kobra Kai", "Solo");
+testUser.characters["Buggsy"] =new Character("Buggsy", "NetRunner");
+testUser.characters["Hound Dog"] =new Character("Hound Dog", "RockerBoy");
 
-testUser.characters[0].cyberware.cyberoptics;
-
+testUser.characters["El'Mo"].cyberware.cyberoptics.leftEye.installed = true;
+testUser.characters["El'Mo"].cyberware.cyberoptics.leftEye.options.push("Anti-Dazzle");
+testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.installed = true;
+testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options.push("Anti-Dazzle");
+testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options.push("Chyron");
+testUser.characters["El'Mo"].cyberware.cyberArms.rightArm.installed = true;
+testUser.characters["El'Mo"].cyberware.cyberArms.rightArm.options.push("Techscanner");
+testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.installed = true;
+testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options.push("Internal Agent");
+testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options.push("Level Damper");
+testUser.characters["El'Mo"].cyberware.neuralware.neuralLink.installed = true;
+testUser.characters["El'Mo"].cyberware.neuralware.neuralLink.options.push("Chipware Socket");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Biomonitor");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Chemskin");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("EMP Threading");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("EMP Threading");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Shift Tacts");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Skinwatch");
+testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Techhair");
+testUser.characters["El'Mo"].cyberware.internalCyberware.base.options.push("Nasal Filters");
 
 const currentUser = testUser;
-
+let currentCharacter;
 
 setHead("Home");
 setHeader();
@@ -68,21 +86,38 @@ function setHeader() {
 }
 
 function setUserCharacter() {
-    for (const character of currentUser.characters) {
+    for (const character in currentUser.characters) {
         $("#user-caracters").append(`
-        <label class="character" for="${character.handle}">
-            <input type="radio" name="character" id="${character.handle}">
-            <img src="./images/${character.role}.png" alt="${character.role}">
-            <p>${character.handle}</p>
-            <p>${character.role}</p>
+        <label class="character" for="${currentUser.characters[character].handle}">
+            <input type="radio" name="character" id="${currentUser.characters[character].handle}">
+            <img src="./images/${currentUser.characters[character].role}.png" alt="${currentUser.characters[character].role}">
+            <p>${currentUser.characters[character].handle}</p>
+            <p>${currentUser.characters[character].role}</p>
         </label>
         `);
     }
 }
 
 $("#user-caracters").on("click", function() {
+    $(`input[type="checkbox"]`).prop("checked", false)
+    currentCharacter = currentUser.characters[$('input[name="character"]:checked').attr('id')];
 
-    console.log($('input[name="character"]:checked').attr('id'));
+    for (const cyberType in currentCharacter.cyberware) {
+        for (const option in currentCharacter.cyberware[cyberType]) {
+            //Shows how many option slots are left
+            $(`#${cyberType}-optionSlotsAvailable`).html(`${cyberware[cyberType].base[0].optionSlotsAvailable - currentCharacter.cyberware[cyberType][option].options.length}`)
+            if (currentCharacter.cyberware[cyberType][option].installed) {
+                $(`input[name="${currentCharacter.cyberware[cyberType][option].name}"]`).prop("checked", true);
+                
+                for (const installedOption of currentCharacter.cyberware[cyberType][option].options) {
+                    $(`input[name="${installedOption}"]`).prop("checked", true);
+                }
+                // console.log(currentCharacter.cyberware[cyberType][option].options);
+            }
+        }
+    }
+
+    console.log(currentCharacter);
 })
 
 
@@ -90,20 +125,21 @@ function setCyberware() {
     for (const type in cyberware) {
         $(`#${type}-container > .container-header`).html(`<h2><span class="arrow-container"><svg class="arrow" fill="#ff0000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" transform="rotate(90)" stroke="#ff0000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,21H3L12,3Z"></path></g></svg></span>` 
                         + type.toUpperCase() 
-                        + `</h2><p>(${cyberware[type].base.optionSlotsAvailable} Options Slots Avaliable)</p>`);
+                        + `</h2><p>(<span id="${type}-optionSlotsAvailable">${cyberware[type].base[0].optionSlotsAvailable}</span> Options Slots Avaliable)</p>`);
         
-        // console.log(cyberware[type].base.required);
-        if (cyberware[type].base.required) {
-            $(`#${type}-options > .options-container`).append(`
-                <label class="cyberware-option cyberware-base-option">
-                    <input type="checkbox" name="${cyberware[type].base.name}" id="${cyberware[type].base.name}">
-                    <label class="option option-name" for="${cyberware[type].base.name}">${cyberware[type].base.name}</label><div class="red-vertical-line"></div>
-                    <label class="option option-install" for="${cyberware[type].base.name}">${cyberware[type].base.install}</label><div class="red-vertical-line"></div>
-                    <label class="option option-description" for="${cyberware[type].base.name}">${cyberware[type].base.description}</label><div class="red-vertical-line"></div>
-                    <label class="option option-cost" for="${cyberware[type].base.name}">${cyberware[type].base.cost}</label><div class="red-vertical-line"></div>
-                    <label class="option option-HL" for="${cyberware[type].base.name}">${cyberware[type].base.humanityLoss}</label>
-                </label>
-            `);
+        for (const option of cyberware[type].base) {
+            if (option.required) {
+                $(`#${type}-options > .options-container`).append(`
+                    <label class="cyberware-option cyberware-base-option" for="${option.name}">
+                        <input type="checkbox" name="${option.name}" id="${option.name}">
+                        <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
+                        <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
+                        <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
+                        <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
+                        <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
+                    </label>
+                `);
+            }
         }
         for (const option of cyberware[type].options) {
             $(`#${type}-options > .options-container`).append(`
@@ -215,7 +251,7 @@ function User(firstName, lastName, email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.characters = [];
+    this.characters = {};
 };
 
 function Character(handle, role) {
@@ -223,66 +259,78 @@ function Character(handle, role) {
     this.role = role;
     this.cyberware = {
         "fashionware": {
-
+            "base" : {
+                "installed" : true,
+                "options" : []
+            }
         },
         "neuralware" : {
-            "base" : {
+            "neuralLink" : {
                 "name" : "Neural Link",
                 "installed": false,
-            },
-            "options" : []
+                "options" : []
+            }            
         },
         "cyberoptics" : {
             "leftEye" : {
-                "name" : "Cybereye",
+                "name" : "Left Cybereye",
                 "installed": false,
                 "options" : []
             },
             "rightEye" : {
-                "name" : "Cybereye",
+                "name" : "Right Cybereye",
                 "installed": false,
                 "options" : []
             }
         },
         "cyberaudio" : {
-            "base" : {
+            "cyberaudioSuite" : {
                 "name" : "Cyberaudio Suite",
                 "installed" : false,
-            },
-            "options" : []
+                "options" : []
+            }            
         },
         "internalCyberware" : {
-
+            "base" : {
+                "installed" : true,
+                "options" : []
+            }
         },
         "externalCyberware" : {
-
+            "base" : {
+                "installed" : true,
+                "options" : []
+            }
         },
         "cyberArms" : {
             "leftArm" : {
-                "name" : "Cyberarm",
+                "name" : "Left Cyberarm",
                 "installed": false,
                 "options" : []
             },
             "rightArm" : {
-                "name" : "Cyberarm",
+                "name" : "Right Cyberarm",
                 "installed": false,
                 "options" : []
             }
         },
         "cyberLegs" : {
             "leftLeg" : {
-                "name" : "Cyberleg",
+                "name" : "Left Cyberleg",
                 "installed": false,
                 "options" : []
             },
             "rightLeg" : {
-                "name" : "Cyberleg",
+                "name" : "Right Cyberleg",
                 "installed": false,
                 "options" : []
             }
         },
         "borgware" : {
-
+            "base" : {
+                "installed" : true,
+                "options" : []
+            }
         }
     };
 };

@@ -222,8 +222,13 @@ input[type="checkbox"]:checked ~ label{
 
 
 .cyberware-base-option {
-    background: rgb(0, 0, 0);
-    color: white;
+    background: rgb(0, 0, 0) !important;
+    color: white !important;
+}
+
+.cyberware-base-option:has(input[type="checkbox"]:checked) {
+    background: rgb(0, 255, 213) !important;
+    
 }
 
 .log-in-container {

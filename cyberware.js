@@ -1,10 +1,12 @@
 const cyberware = {
     "fashionware" : {
-        "base" : {
-            "name" : "fashionware",
-            "optionSlotsAvailable": 7,
-            "required" : false
-        },
+        "base" : [
+            {
+                "name" : "fashionware",
+                "optionSlotsAvailable": 7,
+                "required" : false
+            }
+        ],
         "options" : [
             {
                 "name" : "Biomonitor",
@@ -66,15 +68,17 @@ const cyberware = {
         ]
     },
     "neuralware" : {
-        "base" : {
-            "name" : "Neural Link",
-            "install" : "Clinic",
-            "description" : "Wired artificial nervouse system. Required to use Neuralware and Subdermal Grip.",
-            "optionSlotsAvailable": 5,
-            "cost" : 500,
-            "humanityLoss" : "2d6",
-            "required" : true
-        },
+        "base" : [
+            {
+                "name" : "Neural Link",
+                "install" : "Clinic",
+                "description" : "Wired artificial nervouse system. Required to use Neuralware and Subdermal Grip.",
+                "optionSlotsAvailable": 5,
+                "cost" : 500,
+                "humanityLoss" : "2d6",
+                "required" : true
+            }
+        ],
         "options" : [
             {
                 "name" : "Braindance Recorder",
@@ -175,15 +179,26 @@ const cyberware = {
         ]
     },
     "cyberoptics" : {
-        "base" : {
-            "name" : "Cybereye",
-            "install" : "Clinic",
-            "description" : "Artificial Eye. Each Cybereye has 3 Option Slots. Some options must be paired (purchased twice and installed in two different Cybereyes on a user. HL must be paid for each).",
-            "optionSlotsAvailable": 3,
-            "cost" : 100,
-            "humanityLoss" : "2d6",
-            "required" : true
-        },
+        "base" : [
+            {
+                "name" : "Left Cybereye",
+                "install" : "Clinic",
+                "description" : "Artificial Eye. Each Cybereye has 3 Option Slots. Some options must be paired (purchased twice and installed in two different Cybereyes on a user. HL must be paid for each).",
+                "optionSlotsAvailable": 3,
+                "cost" : 100,
+                "humanityLoss" : "2d6",
+                "required" : true
+            },
+            {
+                "name" : "Right Cybereye",
+                "install" : "Clinic",
+                "description" : "Artificial Eye. Each Cybereye has 3 Option Slots. Some options must be paired (purchased twice and installed in two different Cybereyes on a user. HL must be paid for each).",
+                "optionSlotsAvailable": 3,
+                "cost" : 100,
+                "humanityLoss" : "2d6",
+                "required" : true
+            },
+        ],
         "options" : [
             {
                 "name" : "Anti-Dazzle",
@@ -296,15 +311,17 @@ const cyberware = {
         ]
     },
     "cyberaudio" : {
-        "base" : {
-            "name" : "Cyberaudio Suite",
-            "install" : "Clinic",
-            "description" : "Cyberaudio Suite is installed invisibly in the inner skull. System has 3 Option Slots for Cyberaudio Options. User can only have one Cyberaudio Suite installed.",
-            "optionSlotsAvailable": 3,
-            "cost" : 500,
-            "humanityLoss" : "2d6",
-            "required" : true
-        },
+        "base" : [
+            {
+                "name" : "Cyberaudio Suite",
+                "install" : "Clinic",
+                "description" : "Cyberaudio Suite is installed invisibly in the inner skull. System has 3 Option Slots for Cyberaudio Options. User can only have one Cyberaudio Suite installed.",
+                "optionSlotsAvailable": 3,
+                "cost" : 500,
+                "humanityLoss" : "2d6",
+                "required" : true
+            }
+        ],
         "options" : [
             {
                 "name" : "Amplified Hearing",
@@ -397,11 +414,13 @@ const cyberware = {
         ]
     },
     "internalCyberware" : {
-        "base" : {
-            "name" : "Internal Cyberware",
-            "optionSlotsAvailable": 7,
-            "required" : false
-        },
+        "base" : [
+            {
+                "name" : "Internal Cyberware",
+                "optionSlotsAvailable": 7,
+                "required" : false
+            }
+        ],
         "options" : [
             {
                 "name" : "AudioVox",
@@ -510,11 +529,13 @@ const cyberware = {
         ]
     },
     "externalCyberware" : {
-        "base" : {
-            "name" : "External Cyberware",
-            "optionSlotsAvailable": 7,
-            "required" : false
-        },
+        "base" : [
+            {
+                "name" : "External Cyberware",
+                "optionSlotsAvailable": 7,
+                "required" : false
+            }
+        ],
         "options" : [
             {
                 "name" : "Hidden Holster",
@@ -551,16 +572,28 @@ const cyberware = {
         ]
     },
     "cyberArms" : {
-        "base" : {
-            "name" : "Cyberarm",
-            "install" : "Hospital",
-            "description" : "Replacement arm. Has 4 Option Slots. Comes installed with Standard Hand that doesn't cause Humanity Loss or take up an Option Slot.",
-            "optionSlotsAvailable": 4,
-            "cost" : 500,
-            "humanityLoss" : "2d6",
-            "cyberlimb" : true,
-            "required" : true
-        },
+        "base" : [
+            {
+                "name" : "Left Cyberarm",
+                "install" : "Hospital",
+                "description" : "Replacement arm. Has 4 Option Slots. Comes installed with Standard Hand that doesn't cause Humanity Loss or take up an Option Slot.",
+                "optionSlotsAvailable": 4,
+                "cost" : 500,
+                "humanityLoss" : "2d6",
+                "cyberlimb" : true,
+                "required" : true
+            },
+            {
+                "name" : "Right Cyberarm",
+                "install" : "Hospital",
+                "description" : "Replacement arm. Has 4 Option Slots. Comes installed with Standard Hand that doesn't cause Humanity Loss or take up an Option Slot.",
+                "optionSlotsAvailable": 4,
+                "cost" : 500,
+                "humanityLoss" : "2d6",
+                "cyberlimb" : true,
+                "required" : true
+            }
+        ],
         "options" : [
             {
                 "name" : "Standard Hand",
@@ -709,16 +742,28 @@ const cyberware = {
         ]
     },
     "cyberLegs" : {
-        "base" : {
-            "name" : "Cyberleg",
-            "install" : "Hospital",
-            "description" : "Replacement leg. Has 3 Option Slots. Comes installed with Standard Foot that doesn't cause Humanity Loss or take up an Option Slot. Most Cyberleg options must be paired (purchased twice and installed in two different Cyberlegs on a user. HL must be paid for each).",
-            "optionSlotsAvailable": 3,
-            "cost" : 100,
-            "humanityLoss" : "1d6",
-            "cyberlimb" : true,
-            "required" : true
-        },
+        "base" : [
+            {
+                "name" : "Left Cyberleg",
+                "install" : "Hospital",
+                "description" : "Replacement leg. Has 3 Option Slots. Comes installed with Standard Foot that doesn't cause Humanity Loss or take up an Option Slot. Most Cyberleg options must be paired.",
+                "optionSlotsAvailable": 3,
+                "cost" : 100,
+                "humanityLoss" : "1d6",
+                "cyberlimb" : true,
+                "required" : true
+            },
+            {
+                "name" : "Right Cyberleg",
+                "install" : "Hospital",
+                "description" : "Replacement leg. Has 3 Option Slots. Comes installed with Standard Foot that doesn't cause Humanity Loss or take up an Option Slot. Most Cyberleg options must be paired.",
+                "optionSlotsAvailable": 3,
+                "cost" : 100,
+                "humanityLoss" : "1d6",
+                "cyberlimb" : true,
+                "required" : true
+            }
+        ],
         "options" : [
             {
                 "name" : "Standard Foot",
@@ -776,11 +821,13 @@ const cyberware = {
         ]
     },
     "borgware" : {
-        "base" : {
-            "name" : "Borgware",
-            "optionSlotsAvailable": 4,
-            "required" : false
-        },
+        "base" : [
+            {
+                "name" : "Borgware",
+                "optionSlotsAvailable": 4,
+                "required" : false
+            }
+        ],
         "options" : [
             {
                 "name" : "Artificial Shoulder Mount",
