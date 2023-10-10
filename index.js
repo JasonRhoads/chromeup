@@ -2,15 +2,29 @@ setHead("Home");
 setHeader();
 
 
-//slick function to allow the cards to scorll horizontally
+const currentUser = Jason;
+
+// const currentUser = new User("Jason", "Rhoads", "jasrhoads@gmail.com");
+
 $(document).ready(function(){
+    if (currentUser.email) {
+        logIn(currentUser.email);
+        console.log("welcome back");
+    } else {
+        // registerNewUser();
+        console.log("new user")
+    };
+
+    
+//slick function to allow the cards to scorll horizontally    
     $('.cyberware-card-container').slick({
-        // arrows: true,
         dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1
     });
+
+
 });
 
 
@@ -71,11 +85,90 @@ function setHeader() {
     <nav>
         <ul>
             <li><a href="./">Home</a></li>
-            <li><a href="#cyberware-container">Cyberware</a></li>
-            <li><a href="#settings-container">Settings</a></li>
+            <li><a href="#user-container" class="container-tab">User</a></li>
+            <li><a href="#cyberware-container" class="container-tab">Cyberware</a></li>
+            <li><a href="#settings-container" class="container-tab">Settings</a></li>
         </ul>
     </nav>`)
 }
+
+
+function logIn(email) {
+
+    connectToDataBase(email);
+
+}
+//Shows and Hides the containers
+
+$(".container-tab").on( "click", function() {
+        $("#user-container").addClass("hide").removeClass("show");
+        $("#cyberware-container").addClass("hide").removeClass("show");
+        $("#settings-container").addClass("hide").removeClass("show");
+        $("#" + $( this ).text().toLowerCase() + "-container").addClass("show").removeClass("hide");
+        $("head title").html(`Chrome Up | ${$( this ).text()}`);
+        console.log( $( this ).text().toLowerCase() + "-container" );
+    }
+);
+
+
+function registerNewUser() {  
+    $(`<div class="log-in-container" id="log-in-container"></div>`).insertBefore("header");
+    $("#log-in-container").html(`
+        <form class="log-in-form" id="log-in-form" onsubmit="closeLogin();return false">
+            <div class="log-in-header">
+                <h2>Welcome Choomba!</h2>
+                <h3>Ready to Chrome Up!</h3>
+                <p>Got to collect your deets</p>
+            </div>
+            <label for="first-name">First Name</label>
+            <input id="first-name" type="text" placeholder="First Name">
+            <label for="last-name">Last Name</label>
+            <input id="last-name" type="text" placeholder="Last Name">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email Address">
+            <input id="sign-up" type="submit" value="Sign Up">
+            <input id="close" onclick="closeLogin()" type="submit" value="Close">
+        </form>
+    `);
+
+    currentUser = new User("Jason", "Rhoads", "jasrhoads@gmail.com");
+
+};
+
+
+// var form = document.getElementById("log-in-form");
+// function submitForm(event) {
+//     event.preventDefault();
+//     form.style.display = "none";
+//  }
+
+//  form.addEventListener('submit', submitForm);
+
+
+function connectToDataBase(email) {
+    console.log(`${email} database connection goes here`);
+    return true;
+};
+
+
+function closeLogin() {
+    event.preventDefault();
+    currentUser.email = false;
+    $(".log-in-container").addClass("hide");
+}
+
+// Settings
+
+$('#user-first-name').html(currentUser.firstName);
+$('#user-last-name').html(currentUser.lastName);
+$('#user-email').html(currentUser.email);
+
+
+// User object
+
+const Jason = new User("Jason", "Rhoads", "jason_email");
+
+Jason.characters.push(new Character("El'Mo", "Tech"));
 
 function User(firstName, lastName, email) {
     this.firstName = firstName;
@@ -131,4 +224,4 @@ function Character(handle, role) {
 
         }
     };
-}
+};

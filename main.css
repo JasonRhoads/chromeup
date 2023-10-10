@@ -5,6 +5,7 @@
 }
 
 html, body {
+    position: relative;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 10vh;
@@ -36,6 +37,24 @@ nav ul li a {
 
 main {
     padding-top: 10vh;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+
+.user-container, .settings-container {
+    border-bottom: 20px solid red;
+    border-inline: 20px solid red;
+    box-sizing: border-box;
+    height: 90vh;
+
 }
 
 .cyberware-card-container {
@@ -173,4 +192,33 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked ~ label{
     background: blue;
+}
+
+
+.log-in-container {
+    background: red;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+.log-in-form {
+    background: white;
+    border: 1px solid black;
+    box-sizing: border-box;
+    height: 90vh;
+    margin: 20px;
+    padding: 20px;
+    width: 90vw;
+    
+
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.log-in-header {
+    color: red;
+    margin-block: 20px;
 }
