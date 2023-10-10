@@ -1,8 +1,19 @@
+// test user
+const testUser = new User("Jason", "Rhoads", "jason_email");
+
+testUser.characters.push(new Character("El'Mo", "Tech"));
+testUser.characters.push(new Character("Kobra Kai", "Solo"));
+testUser.characters.push(new Character("Buggsy", "NetRunner"));
+testUser.characters.push(new Character("Hound Dog", "RockerBoy"));
+
+const currentUser = testUser;
+
+
 setHead("Home");
 setHeader();
-
-
-const currentUser = Jason;
+setCyberware();
+setUserAttributes();
+setUserCharacter();
 
 // const currentUser = new User("Jason", "Rhoads", "jasrhoads@gmail.com");
 
@@ -26,45 +37,6 @@ $(document).ready(function(){
 
 
 });
-
-
-//Populate cyberware options into containers
-
-for (const type in cyberware) {
-    $(`#${type}-container > .container-header`).html(`<h2><span class="red-arrow">▶</span>` 
-                       + type.toUpperCase() 
-                       + `</h2><p>(${cyberware[type].base.optionSlotsAvailable} Options Slots Avaliable)</p>`);
-
-    for (const option of cyberware[type].options) {
-
-        document.querySelector(`#${type}-options > .options-container`)
-            .innerHTML += `
-                <label class="cyberware-option">
-                    <input type="checkbox" name="${option.name}" id="${option.name}">
-                    <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
-                    <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
-                    <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
-                    <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
-                    <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
-                </label>
-            `
-    }
-    if (cyberware[type].base.cyberlimb) {
-        for (const option of cyberLimbs) {
-            document.querySelector(`#${type}-options > .options-container`)
-            .innerHTML += `
-                <label class="cyberware-option">
-                    <input type="checkbox" name="${type} ${option.name}" id="${type} ${option.name}">
-                    <label class="option option-name" for="${type} ${option.name}">${option.name}</label><div class="red-vertical-line"></div>
-                    <label class="option option-install" for="${type} ${option.name}">${option.install}</label><div class="red-vertical-line"></div>
-                    <label class="option option-description" for="${type} ${option.name}">${option.description}</label><div class="red-vertical-line"></div>
-                    <label class="option option-cost" for="${type} ${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
-                    <label class="option option-HL" for="${type} ${option.name}">${option.humanityLoss}</label>
-                </label>
-            `
-        }
-    }
-}
 
 
 //helper functions
@@ -92,11 +64,53 @@ function setHeader() {
     </nav>`)
 }
 
+function setUserCharacter() {
+    for (const character of currentUser.characters) {
+        $("#user-caracters").append(character.handle);
+    }
+}
+
+function setCyberware() {
+    for (const type in cyberware) {
+        $(`#${type}-container > .container-header`).html(`<h2><span class="red-arrow">▶</span>` 
+                        + type.toUpperCase() 
+                        + `</h2><p>(${cyberware[type].base.optionSlotsAvailable} Options Slots Avaliable)</p>`);
+
+        for (const option of cyberware[type].options) {
+
+            document.querySelector(`#${type}-options > .options-container`)
+                .innerHTML += `
+                    <label class="cyberware-option">
+                        <input type="checkbox" name="${option.name}" id="${option.name}">
+                        <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
+                        <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
+                        <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
+                        <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
+                        <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
+                    </label>
+                `
+        }
+        if (cyberware[type].base.cyberlimb) {
+            for (const option of cyberLimbs) {
+                document.querySelector(`#${type}-options > .options-container`)
+                .innerHTML += `
+                    <label class="cyberware-option">
+                        <input type="checkbox" name="${type} ${option.name}" id="${type} ${option.name}">
+                        <label class="option option-name" for="${type} ${option.name}">${option.name}</label><div class="red-vertical-line"></div>
+                        <label class="option option-install" for="${type} ${option.name}">${option.install}</label><div class="red-vertical-line"></div>
+                        <label class="option option-description" for="${type} ${option.name}">${option.description}</label><div class="red-vertical-line"></div>
+                        <label class="option option-cost" for="${type} ${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
+                        <label class="option option-HL" for="${type} ${option.name}">${option.humanityLoss}</label>
+                    </label>
+                `
+            }
+        }
+    }
+}
 
 function logIn(email) {
-
     connectToDataBase(email);
-
+    
 }
 //Shows and Hides the containers
 
@@ -106,7 +120,7 @@ $(".container-tab").on( "click", function() {
         $("#settings-container").addClass("hide").removeClass("show");
         $("#" + $( this ).text().toLowerCase() + "-container").addClass("show").removeClass("hide");
         $("head title").html(`Chrome Up | ${$( this ).text()}`);
-        console.log( $( this ).text().toLowerCase() + "-container" );
+        // console.log( $( this ).text().toLowerCase() + "-container" );
     }
 );
 
@@ -158,17 +172,18 @@ function closeLogin() {
 }
 
 // Settings
-
-$('#user-first-name').html(currentUser.firstName);
-$('#user-last-name').html(currentUser.lastName);
-$('#user-email').html(currentUser.email);
-
-
+function setUserAttributes() {
+    $('#settings-user-first-name').attr('value', currentUser.firstName);
+    $('#settings-user-last-name').attr('value', currentUser.lastName);
+    $('#settings-user-email').attr('value', currentUser.email);
+}
+$("#settings-update-button").on('click', function() {
+    currentUser.firstName = $("#settings-user-first-name").val()
+    currentUser.lastName = $("#settings-user-last-name").val();
+    currentUser.email = $("#settings-user-email").val();
+    setUserAttributes()
+})
 // User object
-
-const Jason = new User("Jason", "Rhoads", "jason_email");
-
-Jason.characters.push(new Character("El'Mo", "Tech"));
 
 function User(firstName, lastName, email) {
     this.firstName = firstName;

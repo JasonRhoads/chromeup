@@ -222,3 +222,26 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     color: red;
     margin-block: 20px;
 }
+
+
+/* settings container */
+
+.settings-container {
+    padding: 20px;
+}
+
+.user-settings-container label, .user-settings-container input {
+    display: block;
+    padding-block: 5px;
+}
+
+.user-settings-container input {
+    padding: 5px;
+    width: 95%;
+}
+
+.settings-update-button {
+    box-sizing: unset;
+    margin: 10px 0;
+    width: 295px;
+}

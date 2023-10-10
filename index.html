@@ -8,7 +8,8 @@
     </header>
     <main>
         <section class="user-container hide" id="user-container">
-            User
+            <h2>What up Choomba!</h2>
+            <div class="user-characters" id="user-caracters"></div>
         </section>
         <section class="cyberware-card-container show" id="cyberware-container">
             <section class="card-container" id="fashionware-container">
@@ -167,9 +168,13 @@
         <section class="settings-container hide" id="settings-container">
             <h2>Settings</h2>
             <div class="user-settings-container">
-                <label id="user-first-name"></label>
-                <label id="user-last-name"></label>
-                <label id="user-email"></label>
+                <label for="settings-user-first-name">First Name</label>
+                <input type="text" name="settings-user-first-name" id="settings-user-first-name">
+                <label for="settings-user-last-name">Last Name</label>
+                <input type="text" name="settings-user-last-name" id="settings-user-last-name">
+                <label for="settings-user-email">Email</label>
+                <input type="text" name="settings-user-email" id="settings-user-email">
+                <input type="button" class="settings-update-button" id="settings-update-button" value="Update">
             </div>
         </section>
     </main>
@@ -178,7 +183,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="./slick/slick.min.js"></script>
     <script type="text/javascript" src="./cyberware.js"></script>
-    <script type="text/javascript" src="./users.js"></script>
     <script type="text/javascript" src="./index.js"></script>
 </body>
 </html>
