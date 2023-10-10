@@ -72,7 +72,7 @@ function setUserCharacter() {
 
 function setCyberware() {
     for (const type in cyberware) {
-        $(`#${type}-container > .container-header`).html(`<h2><span class="red-arrow">▶</span>` 
+        $(`#${type}-container > .container-header`).html(`<h2><span class="arrow-container"><svg class="arrow" fill="#ff0000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" transform="rotate(90)" stroke="#ff0000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,21H3L12,3Z"></path></g></svg></span>` 
                         + type.toUpperCase() 
                         + `</h2><p>(${cyberware[type].base.optionSlotsAvailable} Options Slots Avaliable)</p>`);
 

@@ -76,6 +76,7 @@ main {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     padding-left: 20px;
+    position: relative;
     text-align: left;
 }
 
@@ -83,9 +84,14 @@ main {
     padding-left: 20px;
 }
 
-.red-arrow {
-    color: red;
+.arrow-container {
     padding-right: 3px;
+}
+
+.arrow {
+    aspect-ratio: 1;
+    margin-left: 5px;
+    width: 20px;
 }
 .cyberware-options-container {
     background: red;
