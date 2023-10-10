@@ -36,6 +36,10 @@ nav svg {
     width: 50px;
 }
 
+nav li:hover {
+    cursor: pointer;
+}
+
 main {
     padding-top: 10vh;
 }
