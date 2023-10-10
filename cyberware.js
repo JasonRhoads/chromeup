@@ -2,7 +2,8 @@ const cyberware = {
     "fashionware" : {
         "base" : {
             "name" : "fashionware",
-            "optionSlotsAvailable": 7
+            "optionSlotsAvailable": 7,
+            "required" : false
         },
         "options" : [
             {
@@ -71,7 +72,8 @@ const cyberware = {
             "description" : "Wired artificial nervouse system. Required to use Neuralware and Subdermal Grip.",
             "optionSlotsAvailable": 5,
             "cost" : 500,
-            "humanityLoss" : "2d6"
+            "humanityLoss" : "2d6",
+            "required" : true
         },
         "options" : [
             {
@@ -179,7 +181,8 @@ const cyberware = {
             "description" : "Artificial Eye. Each Cybereye has 3 Option Slots. Some options must be paired (purchased twice and installed in two different Cybereyes on a user. HL must be paid for each).",
             "optionSlotsAvailable": 3,
             "cost" : 100,
-            "humanityLoss" : "2d6"
+            "humanityLoss" : "2d6",
+            "required" : true
         },
         "options" : [
             {
@@ -299,7 +302,8 @@ const cyberware = {
             "description" : "Cyberaudio Suite is installed invisibly in the inner skull. System has 3 Option Slots for Cyberaudio Options. User can only have one Cyberaudio Suite installed.",
             "optionSlotsAvailable": 3,
             "cost" : 500,
-            "humanityLoss" : "2d6"
+            "humanityLoss" : "2d6",
+            "required" : true
         },
         "options" : [
             {
@@ -395,7 +399,8 @@ const cyberware = {
     "internalCyberware" : {
         "base" : {
             "name" : "Internal Cyberware",
-            "optionSlotsAvailable": 7
+            "optionSlotsAvailable": 7,
+            "required" : false
         },
         "options" : [
             {
@@ -507,7 +512,8 @@ const cyberware = {
     "externalCyberware" : {
         "base" : {
             "name" : "External Cyberware",
-            "optionSlotsAvailable": 7
+            "optionSlotsAvailable": 7,
+            "required" : false
         },
         "options" : [
             {
@@ -552,7 +558,8 @@ const cyberware = {
             "optionSlotsAvailable": 4,
             "cost" : 500,
             "humanityLoss" : "2d6",
-            "cyberlimb" : true
+            "cyberlimb" : true,
+            "required" : true
         },
         "options" : [
             {
@@ -709,7 +716,8 @@ const cyberware = {
             "optionSlotsAvailable": 3,
             "cost" : 100,
             "humanityLoss" : "1d6",
-            "cyberlimb" : true
+            "cyberlimb" : true,
+            "required" : true
         },
         "options" : [
             {
@@ -770,7 +778,8 @@ const cyberware = {
     "borgware" : {
         "base" : {
             "name" : "Borgware",
-            "optionSlotsAvailable": 4
+            "optionSlotsAvailable": 4,
+            "required" : false
         },
         "options" : [
             {

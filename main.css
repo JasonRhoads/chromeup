@@ -221,6 +221,11 @@ input[type="checkbox"]:checked ~ label{
 }
 
 
+.cyberware-base-option {
+    background: rgb(0, 0, 0);
+    color: white;
+}
+
 .log-in-container {
     background: red;
     height: 100vh;

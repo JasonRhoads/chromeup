@@ -6,6 +6,9 @@ testUser.characters.push(new Character("Kobra Kai", "Solo"));
 testUser.characters.push(new Character("Buggsy", "NetRunner"));
 testUser.characters.push(new Character("Hound Dog", "RockerBoy"));
 
+testUser.characters[0].cyberware.cyberoptics;
+
+
 const currentUser = testUser;
 
 
@@ -77,30 +80,46 @@ function setUserCharacter() {
     }
 }
 
+$("#user-caracters").on("click", function() {
+
+    console.log($('input[name="character"]:checked').attr('id'));
+})
+
+
 function setCyberware() {
     for (const type in cyberware) {
         $(`#${type}-container > .container-header`).html(`<h2><span class="arrow-container"><svg class="arrow" fill="#ff0000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" transform="rotate(90)" stroke="#ff0000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,21H3L12,3Z"></path></g></svg></span>` 
                         + type.toUpperCase() 
                         + `</h2><p>(${cyberware[type].base.optionSlotsAvailable} Options Slots Avaliable)</p>`);
-
+        
+        // console.log(cyberware[type].base.required);
+        if (cyberware[type].base.required) {
+            $(`#${type}-options > .options-container`).append(`
+                <label class="cyberware-option cyberware-base-option">
+                    <input type="checkbox" name="${cyberware[type].base.name}" id="${cyberware[type].base.name}">
+                    <label class="option option-name" for="${cyberware[type].base.name}">${cyberware[type].base.name}</label><div class="red-vertical-line"></div>
+                    <label class="option option-install" for="${cyberware[type].base.name}">${cyberware[type].base.install}</label><div class="red-vertical-line"></div>
+                    <label class="option option-description" for="${cyberware[type].base.name}">${cyberware[type].base.description}</label><div class="red-vertical-line"></div>
+                    <label class="option option-cost" for="${cyberware[type].base.name}">${cyberware[type].base.cost}</label><div class="red-vertical-line"></div>
+                    <label class="option option-HL" for="${cyberware[type].base.name}">${cyberware[type].base.humanityLoss}</label>
+                </label>
+            `);
+        }
         for (const option of cyberware[type].options) {
-
-            document.querySelector(`#${type}-options > .options-container`)
-                .innerHTML += `
-                    <label class="cyberware-option">
-                        <input type="checkbox" name="${option.name}" id="${option.name}">
-                        <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
-                        <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
-                        <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
-                        <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
-                        <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
-                    </label>
-                `
+            $(`#${type}-options > .options-container`).append(`
+                <label class="cyberware-option">
+                    <input type="checkbox" name="${option.name}" id="${option.name}">
+                    <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
+                    <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
+                    <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
+                    <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
+                    <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
+                </label>
+            `);
         }
         if (cyberware[type].base.cyberlimb) {
             for (const option of cyberLimbs) {
-                document.querySelector(`#${type}-options > .options-container`)
-                .innerHTML += `
+                $(`#${type}-options > .options-container`).append(`
                     <label class="cyberware-option">
                         <input type="checkbox" name="${type} ${option.name}" id="${type} ${option.name}">
                         <label class="option option-name" for="${type} ${option.name}">${option.name}</label><div class="red-vertical-line"></div>
@@ -109,7 +128,7 @@ function setCyberware() {
                         <label class="option option-cost" for="${type} ${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
                         <label class="option option-HL" for="${type} ${option.name}">${option.humanityLoss}</label>
                     </label>
-                `
+                `);
             }
         }
     }
@@ -207,18 +226,30 @@ function Character(handle, role) {
 
         },
         "neuralware" : {
-            
+            "base" : {
+                "name" : "Neural Link",
+                "installed": false,
+            },
+            "options" : []
         },
         "cyberoptics" : {
             "leftEye" : {
-
+                "name" : "Cybereye",
+                "installed": false,
+                "options" : []
             },
             "rightEye" : {
-
+                "name" : "Cybereye",
+                "installed": false,
+                "options" : []
             }
         },
         "cyberaudio" : {
-
+            "base" : {
+                "name" : "Cyberaudio Suite",
+                "installed" : false,
+            },
+            "options" : []
         },
         "internalCyberware" : {
 
@@ -228,18 +259,26 @@ function Character(handle, role) {
         },
         "cyberArms" : {
             "leftArm" : {
-
+                "name" : "Cyberarm",
+                "installed": false,
+                "options" : []
             },
             "rightArm" : {
-
+                "name" : "Cyberarm",
+                "installed": false,
+                "options" : []
             }
         },
         "cyberLegs" : {
             "leftLeg" : {
-
+                "name" : "Cyberleg",
+                "installed": false,
+                "options" : []
             },
             "rightLeg" : {
-
+                "name" : "Cyberleg",
+                "installed": false,
+                "options" : []
             }
         },
         "borgware" : {
