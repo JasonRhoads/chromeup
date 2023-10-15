@@ -36,7 +36,7 @@ nav svg {
     width: 50px;
 }
 
-nav li:hover {
+nav li:hover, .character:hover {
     cursor: pointer;
 }
 
@@ -44,22 +44,15 @@ main {
     padding-top: 10vh;
 }
 
-.hide {
-    display: none;
-}
-
 .show {
     display: block;
 }
-
-
 
 .user-container, .settings-container {
     border-bottom: 20px solid red;
     border-inline: 20px solid red;
     box-sizing: border-box;
     height: 90vh;
-
 }
 
 .user-characters {
@@ -81,7 +74,7 @@ main {
     width: 100%;
 }
 
-.cyberware-card-container {
+.cyberware-card-outer-container {
     text-align: center;
 }
 
@@ -100,7 +93,6 @@ main {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     padding-left: 20px;
-    position: relative;
     text-align: left;
 }
 
@@ -128,20 +120,8 @@ main {
     display: flex;
     height: 50px;
     justify-content: center;
-    padding-inline: 20px 10px;
 }
 
-.option-header label:nth-of-type(2){
-    padding-inline: 20px 5px;
-}
-
-.option-header label:nth-of-type(3) {
-    padding-inline: 5px;
-}
-
-.option-header label:nth-of-type(4), .option-header label:nth-of-type(5) {
-    padding-inline:  5px;
-}
 
 /* width */
 ::-webkit-scrollbar {
@@ -165,49 +145,70 @@ main {
   }
 
 .options-container {
-    max-height: 350px;
+    max-height: 300px;
     overflow-y: auto;
     padding-left: 15px;
     scrollbar-gutter: stable;
 }
 
 .cyberware-option {
-    align-items: center;
     background: white;
-    display: flex;
-    font-size: 10px;
-    max-height: 80px;
+    box-sizing: border-box;
+    display: block;
     min-height: 50px;
-    justify-content: center;
+    padding-top: 15px;
 }
 
 .cyberware-option:nth-of-type(even) {
     background: pink;
 }
 
-.red-vertical-line {
+
+.option-details-container {
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 15px;
+    max-height: 0;
+    text-align: left;
+}
+
+/* .option-details-header {
+    border-bottom: 3px solid red;
+    width: 100%;
+} */
+
+.button {
+    box-sizing: border-box;
+    height: 30px;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+
+/* .red-vertical-line {
     aspect-ratio: 1/27;
     background-color: red;
     content: "";
     min-height: 50px;
     width: 3px;
-}
+} */
 
 
 .option-name {
-    width: 20%; 
+    font-size: 1rem;
 }
 
-.option-install {
-    width: 15%;
+.down-arrow {
+    height: 15px;
+    padding-inline: 10px;
+    width: 15px;
 }
 
-.option-description {
-    width: 135px;  
-}
-
-.option-cost, .option-HL {
-    width: 12%; 
+.option {
+    display: block;
+    border-bottom: 1px solid black;
+    font-size: .8rem;
+    padding: 5px;
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -215,14 +216,45 @@ input[type="checkbox"], input[type="radio"] {
     position: absolute; 
     top: 0;
 }
-
-.cyberware-option:has(input[type="checkbox"]:checked), #user-caracters label:has([type="radio"]:checked) {
+/* .cyberware-option:has(input[type="checkbox"]:checked), */
+#user-caracters label:has([type="radio"]:checked) {
     background-color: green;
 }
 
-input[type="checkbox"]:checked ~ label{
-    background: blue;
+input[type="checkbox"]:checked ~ .option-details-container{
+    animation: show-box 1s;
+    max-height: 200px;
+    transition: height; 
 }
+
+input[type="checkbox"]:not(:checked) ~ .option-details-container{
+    animation: hide-box 1s;
+}
+
+@keyframes show-box {
+    0% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 200px;
+    }
+}
+
+@keyframes hide-box {
+    0% {
+        max-height: 200px;
+    }
+    100% {
+        max-height: 0;
+    }
+}
+
+/* input[type="checkbox"]:not(:checked) ~ .option-details-container{
+    animation: hide-box 1.5s;
+    height: initial;
+    background: green;
+    transition: height;
+} */
 
 
 .cyberware-base-option {
@@ -288,3 +320,9 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     margin: 10px 0;
     width: 295px;
 }
+
+
+.hide {
+    display: none;
+}
+

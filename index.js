@@ -7,34 +7,40 @@ testUser.characters["Buggsy"] =new Character("Buggsy", "NetRunner");
 testUser.characters["Hound Dog"] =new Character("Hound Dog", "RockerBoy");
 
 testUser.characters["El'Mo"].cyberware.cyberoptics.leftEye.installed = true;
-testUser.characters["El'Mo"].cyberware.cyberoptics.leftEye.options.push("Anti-Dazzle");
+testUser.characters["El'Mo"].cyberware.cyberoptics.leftEye.options["Anti-Dazzle"] = true;
 testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.installed = true;
-testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options.push("Anti-Dazzle");
-testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options.push("Chyron");
+testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options["Anti-Dazzle"] = true;
+testUser.characters["El'Mo"].cyberware.cyberoptics.rightEye.options["Chyron"] = true;
 testUser.characters["El'Mo"].cyberware.cyberArms.rightArm.installed = true;
-testUser.characters["El'Mo"].cyberware.cyberArms.rightArm.options.push("Techscanner");
+testUser.characters["El'Mo"].cyberware.cyberArms.rightArm.options["Techscanner"] = true;
 testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.installed = true;
-testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options.push("Internal Agent");
-testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options.push("Level Damper");
+testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options["Internal Agent"] = true;
+testUser.characters["El'Mo"].cyberware.cyberaudio.cyberaudioSuite.options["Level Damper"] = true;
 testUser.characters["El'Mo"].cyberware.neuralware.neuralLink.installed = true;
-testUser.characters["El'Mo"].cyberware.neuralware.neuralLink.options.push("Chipware Socket");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Biomonitor");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Chemskin");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("EMP Threading");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("EMP Threading");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Shift Tacts");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Skinwatch");
-testUser.characters["El'Mo"].cyberware.fashionware.base.options.push("Techhair");
-testUser.characters["El'Mo"].cyberware.internalCyberware.base.options.push("Nasal Filters");
+testUser.characters["El'Mo"].cyberware.neuralware.neuralLink.options["Chipware Socket"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["Biomonitor"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["Chemskin"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["EMP Threading"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["EMP Threading"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["Shift Tacts"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["Skinwatch"] = true;
+testUser.characters["El'Mo"].cyberware.fashionware.base.options["Techhair"] = true;
+testUser.characters["El'Mo"].cyberware.internalCyberware.base.options["Nasal Filters"] = true;
 
 const currentUser = testUser;
-let currentCharacter;
+const defaultCharacter = new Character("Default", "RockerBoy")
+let currentCharacter = currentUser.characters["El'Mo"];
+
+
+
 
 setHead("Home");
 setHeader();
-setCyberware();
 setUserAttributes();
 setUserCharacter();
+setCyberware();
+
+$(`.character:first-of-type input`).prop("checked", true);
 
 // const currentUser = new User("Jason", "Rhoads", "jasrhoads@gmail.com");
 
@@ -96,9 +102,10 @@ function setUserCharacter() {
         </label>
         `);
     }
+
 }
 
-$("#user-caracters").on("click", function() {
+$("#user-caracters > label").change(function() {
     $(`input[type="checkbox"]`).prop("checked", false)
     currentCharacter = currentUser.characters[$('input[name="character"]:checked').attr('id')];
     console.log(currentCharacter);
@@ -111,18 +118,30 @@ function checkCyberware() {
     for (const cyberType in currentCharacter.cyberware) {
         for (const option in currentCharacter.cyberware[cyberType]) {
             //Shows how many option slots are left
-            $(`#${cyberType}-optionSlotsAvailable`).html(`${cyberware[cyberType].base[0].optionSlotsAvailable - currentCharacter.cyberware[cyberType][option].options.length}`)
+            $(`#${cyberType}-optionSlotsAvailable`).html(`${cyberware[cyberType].base[0].optionSlotsAvailable - Object.keys(currentCharacter.cyberware[cyberType][option].options).length}`);
             if (currentCharacter.cyberware[cyberType][option].installed) {
                 $(`input[name="${currentCharacter.cyberware[cyberType][option].name}"]`).prop("checked", true);
                 
-                for (const installedOption of currentCharacter.cyberware[cyberType][option].options) {
+                for (const installedOption in currentCharacter.cyberware[cyberType][option].options) {
+                    
                     $(`input[name="${installedOption}"]`).prop("checked", true);
-                }
+                };
                 // console.log(currentCharacter.cyberware[cyberType][option].options);
-            }
-        }
-    }
-}
+            };
+        };
+    };
+};
+
+// $('.cyberware-option').change(function() {
+//     let tempCyber = $(this).parent().parent().attr('id').slice(0,-8)
+//     if($(this.children[0]).prop("checked") ) {
+//         currentCharacter.cyberware[tempCyber].base.options[this.children[0].name] = true;
+//     } else {
+//         currentCharacter.cyberware[tempCyber].base.options[this.children[0].name] = false;
+//     }
+//     console.log($(this).parent().parent().attr('id').slice(0,-8), this.children[0].name);
+// });
+
 
 
 function setCyberware() {
@@ -149,11 +168,21 @@ function setCyberware() {
             $(`#${type}-options > .options-container`).append(`
                 <label class="cyberware-option">
                     <input type="checkbox" name="${option.name}" id="${option.name}">
-                    <label class="option option-name" for="${option.name}">${option.name}</label><div class="red-vertical-line"></div>
-                    <label class="option option-install" for="${option.name}">${option.install}</label><div class="red-vertical-line"></div>
-                    <label class="option option-description" for="${option.name}">${option.description}</label><div class="red-vertical-line"></div>
-                    <label class="option option-cost" for="${option.name}">${option.cost}</label><div class="red-vertical-line"></div>
-                    <label class="option option-HL" for="${option.name}">${option.humanityLoss}</label>
+                    <label class="option-name" for="${option.name}" id="${option.name}-label">
+                        <svg class="down-arrow" fill="#000000" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 407.437 407.437" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon points="203.718,322.929 21.179,140.984 0,162.232 203.718,365.287 407.437,162.232 386.258,140.984 "></polygon> <polygon points="407.437,63.398 386.258,42.15 203.718,224.095 21.179,42.15 0,63.398 203.718,266.453 "></polygon> </g> </g></svg>
+                        ${option.name} 
+                        <svg class="down-arrow" fill="#000000" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 407.437 407.437" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon points="203.718,322.929 21.179,140.984 0,162.232 203.718,365.287 407.437,162.232 386.258,140.984 "></polygon> <polygon points="407.437,63.398 386.258,42.15 203.718,224.095 21.179,42.15 0,63.398 203.718,266.453 "></polygon> </g> </g></svg>
+                        </label>
+                        <div class="option-details-container">
+                            <label class="option option-install" for="${option.name}">Install: ${option.install}</label>
+                            <div class="red-vertical-line"></div>
+                            <label class="option option-description" for="${option.name}">Description: ${option.description}</label>
+                            <div class="red-vertical-line"></div>
+                            <label class="option option-cost" for="${option.name}">Cost: ${option.cost}</label>
+                            <div class="red-vertical-line"></div>
+                            <label class="option option-HL" for="${option.name}">Humanity Loss: ${option.humanityLoss}</label>
+                            ${setInstallButton(type, option.name)}    
+                        </div>
                 </label>
             `);
         }
@@ -172,6 +201,18 @@ function setCyberware() {
             }
         }
     }
+    // checkCyberware();
+}
+// base.options.Biomonitor
+
+
+function setInstallButton(catagory, cyberOption) {
+    // console.log(currentCharacter.cyberware[catagory])
+    // if (currentCharacter.cyberware[catagory].options[option]) {
+    //     return `<input id="uninstall-button" class="button" type="button" value="uninstall" onclick="uninstall()"></input>`
+    // } else {
+        return `<input id="#install-button" class="button" type="button" value="install" onclick="install()">`
+    // }                       
 }
 
 function logIn(email) {
@@ -189,7 +230,6 @@ $(".container-tab").on( "click", function() {
         // console.log( $( this ).attr('id').substring(1).slice(0, -4));
     }
 );
-
 
 function registerNewUser() {  
     $(`<div class="log-in-container" id="log-in-container"></div>`).insertBefore("header");
@@ -232,7 +272,7 @@ function connectToDataBase(email) {
 
 
 function closeLogin() {
-    event.preventDefault();
+    Event.preventDefault();
     currentUser.email = false;
     $(".log-in-container").addClass("hide");
 }
@@ -265,75 +305,75 @@ function Character(handle, role) {
         "fashionware": {
             "base" : {
                 "installed" : true,
-                "options" : []
+                "options" : {}
             }
         },
         "neuralware" : {
             "neuralLink" : {
                 "name" : "Neural Link",
                 "installed": false,
-                "options" : []
+                "options" : {}
             }            
         },
         "cyberoptics" : {
             "leftEye" : {
                 "name" : "Left Cybereye",
                 "installed": false,
-                "options" : []
+                "options" : {}
             },
             "rightEye" : {
                 "name" : "Right Cybereye",
                 "installed": false,
-                "options" : []
+                "options" : {}
             }
         },
         "cyberaudio" : {
             "cyberaudioSuite" : {
                 "name" : "Cyberaudio Suite",
                 "installed" : false,
-                "options" : []
+                "options" : {}
             }            
         },
         "internalCyberware" : {
             "base" : {
                 "installed" : true,
-                "options" : []
+                "options" : {}
             }
         },
         "externalCyberware" : {
             "base" : {
                 "installed" : true,
-                "options" : []
+                "options" : {}
             }
         },
         "cyberArms" : {
             "leftArm" : {
                 "name" : "Left Cyberarm",
                 "installed": false,
-                "options" : []
+                "options" : {}
             },
             "rightArm" : {
                 "name" : "Right Cyberarm",
                 "installed": false,
-                "options" : []
+                "options" : {}
             }
         },
         "cyberLegs" : {
             "leftLeg" : {
                 "name" : "Left Cyberleg",
                 "installed": false,
-                "options" : []
+                "options" : {}
             },
             "rightLeg" : {
                 "name" : "Right Cyberleg",
                 "installed": false,
-                "options" : []
+                "options" : {}
             }
         },
         "borgware" : {
             "base" : {
                 "installed" : true,
-                "options" : []
+                "options" : {}
             }
         }
     };
