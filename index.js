@@ -1,5 +1,5 @@
 // test user
-const testUser = new User("Jason", "Rhoads", "jason_email");
+const testUser = new User("Jason", "Rhoads", "jason_email", "#ff0000");
 
 testUser.characters["El'Mo"] = new Character("El'Mo", "Tech");
 testUser.characters["Kobra Kai"] = new Character("Kobra Kai", "Solo");
@@ -282,19 +282,29 @@ function setUserAttributes() {
     $('#settings-user-first-name').attr('value', currentUser.firstName);
     $('#settings-user-last-name').attr('value', currentUser.lastName);
     $('#settings-user-email').attr('value', currentUser.email);
+    $('#settings-user-color').attr('value', currentUser.color);
 }
 $("#settings-update-button").on('click', function() {
-    currentUser.firstName = $("#settings-user-first-name").val()
+    currentUser.firstName = $("#settings-user-first-name").val();
     currentUser.lastName = $("#settings-user-last-name").val();
     currentUser.email = $("#settings-user-email").val();
+    currentUser.color = $("#settings-user-color").val();
+    setUserColor(currentUser.color)
     setUserAttributes()
 })
+
+function setUserColor(color) {
+    var c = document.querySelector(':root');
+    c.style.setProperty('--primary-color', color)
+}
+
 // User object
 
-function User(firstName, lastName, email) {
+function User(firstName, lastName, email, color) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.color = color
     this.characters = {};
 };
 

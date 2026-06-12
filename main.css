@@ -1,3 +1,15 @@
+:root {
+  --primary-color: #ff0000; 
+
+  /* Lighten by mixing with 20% white */
+  --primary-light: color-mix(in oklab, var(--primary-color), white 50%);
+
+  /* Darken by mixing with 20% black */
+  --primary-dark: color-mix(in oklab, var(--primary-color), black 25%);
+
+  --primary-bg: #fff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +24,7 @@ html, body {
 }
 
 header {
-    background-color: red;
+    background-color: var(--primary-color);
     height: 10vh;
     position: fixed;
     width: 100vw;
@@ -49,8 +61,8 @@ main {
 }
 
 .user-container, .settings-container {
-    border-bottom: 20px solid red;
-    border-inline: 20px solid red;
+    border-bottom: 20px solid var(--primary-color);
+    border-inline: 20px solid var(--primary-color);
     box-sizing: border-box;
     height: 90vh;
 }
@@ -76,14 +88,17 @@ main {
 
 .cyberware-card-outer-container {
     text-align: center;
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
 }
 
 .card-container {
-    background-color: red;
+    background-color: var(--primary-color);
     border: 1px solid black;
     border-radius: 25px;
     box-sizing: border-box;
-    max-height: 80vh;
+    max-height: 90vh;
     margin: 10px;
     padding-bottom: 20px;
 }
@@ -110,8 +125,8 @@ main {
     width: 20px;
 }
 .cyberware-options-container {
-    background: red;
-    border-bottom: 5px solid red;
+    background: var(--primary-color);
+    border-bottom: 5px solid var(--primary-color);
 }
 
 .option-header {
@@ -130,18 +145,18 @@ main {
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: red;
+    background: var(--primary-color);
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #a10000;
+    background: var(--primary-dark);
     border-radius: 10px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #ff4242;
+    background: color-mix(in oklab, var(--primary-dark), white 20%);;
   }
 
 .options-container {
@@ -160,7 +175,7 @@ main {
 }
 
 .cyberware-option:nth-of-type(even) {
-    background: pink;
+    background: var(--primary-light);
 }
 
 
@@ -173,7 +188,7 @@ main {
 }
 
 /* .option-details-header {
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid var(--primary-color);
     width: 100%;
 } */
 
@@ -187,7 +202,7 @@ main {
 
 /* .red-vertical-line {
     aspect-ratio: 1/27;
-    background-color: red;
+    background-color: var(--primary-color);
     content: "";
     min-height: 50px;
     width: 3px;
@@ -216,10 +231,10 @@ input[type="checkbox"], input[type="radio"] {
     position: absolute; 
     top: 0;
 }
-/* .cyberware-option:has(input[type="checkbox"]:checked), */
+/* .cyberware-option:has(input[type="checkbox"]:checked),
 #user-caracters label:has([type="radio"]:checked) {
     background-color: green;
-}
+} */
 
 input[type="checkbox"]:checked ~ .option-details-container{
     animation: show-box 1s;
@@ -268,7 +283,7 @@ input[type="checkbox"]:not(:checked) ~ .option-details-container{
 }
 
 .log-in-container {
-    background: red;
+    background: var(--primary-color);
     height: 100vh;
     position: fixed;
     width: 100%;
@@ -291,7 +306,7 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .log-in-header {
-    color: red;
+    color: var(--primary-color);
     margin-block: 20px;
 }
 
@@ -307,12 +322,14 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 
 .user-settings-container label, .user-settings-container input {
     display: block;
-    padding-block: 5px;
+    padding: 5px;
 }
 
 .user-settings-container input {
+    box-sizing: border-box;
     padding: 5px;
-    width: 95%;
+
+    width: 100%;
 }
 
 .settings-update-button {
@@ -321,6 +338,10 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     width: 295px;
 }
 
+.settings-user-color {
+    padding-inline: 10px;
+    height: 50px;
+}
 
 .hide {
     display: none;
